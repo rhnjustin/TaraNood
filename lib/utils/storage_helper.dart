@@ -1,29 +1,20 @@
-import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/watch_item.dart';
 
 class StorageHelper {
-  static const String _key = 'watch_items_key';
+  final SharedPreferences prefs;
 
-  // I-save ang listahan sa SharedPreferences
-  static Future<void> saveItems(List<WatchItem> items) async {
-    final prefs = await SharedPreferences.getInstance();
-    final String encodedData = jsonEncode(
-      items.map((item) => item.toJson()).toList(),
-    );
-    await prefs.setString(_key, encodedData);
+  StorageHelper({required this.prefs});
+
+  Future<void> saveItems(List<WatchItem> items) async {
+    // Nagse-save ng items sa SharedPreferences
+    final List<String> stringList = items.map((item) => item.toJson()).toList();
+    await prefs.setStringList('watch_items', stringList);
   }
 
-  // Kukunin ang listahan mula sa SharedPreferences
-  static Future<List<WatchItem>> getItems() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? encodedData = prefs.getString(_key);
-
-    if (encodedData == null || encodedData.isEmpty) {
-      return [];
-    }
-
-    final List<dynamic> decodedData = jsonDecode(encodedData);
-    return decodedData.map((item) => WatchItem.fromJson(item)).toList();
+  List<WatchItem> getItems() {
+    final List<String>? stringList = prefs.getStringList('watch_items');
+    if (stringList == null) return [];
+    return stringList.map((item) => WatchItem.fromJson(item)).toList();
   }
 }
