@@ -1,37 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_provider.dart';
-import '../widgets/watch_card.dart';
 
 class HistoryFragment extends StatelessWidget {
-  const HistoryFragment({super.key});
+  const HistoryFragment({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppProvider>(
-      builder: (context, provider, child) {
-        final historyItems = provider.watchItems
-            .where((item) => item.status.trim().toLowerCase() == 'completed')
-            .toList()
-            .reversed
-            .toList();
+    return Scaffold(
+      appBar: AppBar(title: const Text("History")),
+      body: Consumer<AppProvider>(
+        builder: (context, provider, child) {
+          final historyList = provider.historyList;
 
-        if (historyItems.isEmpty) {
-          return const Center(
-            child: Text('Walang natapos na panoorin.'),
+          if (historyList.isEmpty) {
+            return const Center(
+              child: Text("Walang nakatagong History."),
+            );
+          }
+
+          return Column(
+            children: [
+              // Naka-wrap sa Expanded para maiwasan ang layout crash
+              Expanded(
+                child: ListView.builder(
+                  itemCount: historyList.length,
+                  itemBuilder: (context, index) {
+                    final item = historyList[index];
+                    return ListTile(
+                      title: Text(item.title),
+                      subtitle: const Text("Status: Completed"),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        onPressed: () {
+                          provider.deleteItem(item.id);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
-        }
-
-        return ListView.builder(
-          key: const PageStorageKey('history_list'),
-          itemCount: historyItems.length,
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          itemBuilder: (context, index) => WatchCard(
-            key: ValueKey(historyItems[index].id),
-            item: historyItems[index],
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 }

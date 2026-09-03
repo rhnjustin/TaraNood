@@ -1,99 +1,127 @@
 import 'package:flutter/material.dart';
 import '../models/watch_item.dart';
-import '../models/log_entry.dart';
 import '../utils/storage_helper.dart';
 
-class AppProvider with ChangeNotifier {
+class AppProvider extends ChangeNotifier {
   final StorageHelper storageHelper;
 
-  List<WatchItem> _watchItems = [];
-  List<LogEntry> _logs = [];
-  bool _isDarkMode = true;
+  AppProvider(this.storageHelper);
+
+  List<WatchItem> _items = [];
+  bool _isDarkMode = false;
   String _userName = 'User';
   int _userAge = 0;
+  List<String> _logs = [];
 
-  AppProvider(this.storageHelper) {
-    _loadData();
-  }
-
-  List<WatchItem> get watchItems => _watchItems;
-  List<LogEntry> get logs => _logs;
+  // Getters
+  List<WatchItem> get items => _items;
   bool get isDarkMode => _isDarkMode;
   String get userName => _userName;
   int get userAge => _userAge;
+  List<String> get logs => _logs;
 
-  List<WatchItem> get favorites => _watchItems.where((i) => i.isFavorite).toList();
-  List<WatchItem> get history => _watchItems.where((i) => i.status == 'Completed').toList();
+  List<WatchItem> get watchlist =>
+      _items.where((item) => item.status != 'Completed').toList();
 
-  // Statistics
-  int get totalMoviesSaved => _watchItems.where((i) => i.type == 'Movie').length;
-  int get totalSeriesSaved => _watchItems.where((i) => i.type == 'TV Show').length;
-  int get totalAnimeSaved => _watchItems.where((i) => i.type == 'Anime').length;
-  int get totalOtherSaved => _watchItems.where((i) => i.type == 'Other').length;
-  int get totalCompleted => history.length;
+  List<WatchItem> get historyList =>
+      _items.where((item) => item.status == 'Completed').toList();
+
+  List<WatchItem> get favorites =>
+      _items.where((item) => item.isFavorite).toList();
+
+  // Statistics Getters
+  int get totalMoviesSaved =>
+      _items.where((i) => i.type.toLowerCase() == 'movie').length;
+
+  int get totalSeriesSaved =>
+      _items.where((i) => i.type.toLowerCase() == 'series').length;
+
+  int get totalAnimeSaved =>
+      _items.where((i) => i.type.toLowerCase() == 'anime').length;
+
+  int get totalOtherSaved => _items
+      .where((i) => !['movie', 'series', 'anime'].contains(i.type.toLowerCase()))
+      .length;
+
+  int get totalCompleted => historyList.length;
+
   int get totalFavorites => favorites.length;
 
-  int get episodesWatched => _watchItems.fold(0, (sum, item) => sum + item.episodesWatched);
+  int get episodesWatched =>
+      _items.fold(0, (sum, item) => sum + item.episodesWatched);
 
   String get totalWatchTimeFormatted {
-    int totalMinutes = _watchItems.fold(0, (sum, item) => sum + (item.runtimeMinutes * (item.episodesWatched > 0 ? item.episodesWatched : 1)));
+    int totalMinutes =
+    _items.fold(0, (sum, item) => sum + item.watchTimeMinutes);
     int hours = totalMinutes ~/ 60;
-    int mins = totalMinutes % 60;
-    return '${hours}h ${mins}m';
+    int minutes = totalMinutes % 60;
+    return '${hours}h ${minutes}m';
   }
 
-  void _loadData() {
-    _watchItems = storageHelper.getWatchItems();
-    _logs = storageHelper.getLogs();
-    _isDarkMode = storageHelper.isDarkMode();
-    _userName = storageHelper.getUserName();
-    _userAge = storageHelper.getUserAge();
+  // Actions
+  void toggleTheme() {
+    _isDarkMode = !_isDarkMode;
     notifyListeners();
   }
 
-  Future<void> toggleDarkMode(bool value) async {
-    _isDarkMode = value;
-    await storageHelper.setDarkMode(value);
-    notifyListeners();
-  }
-
-  Future<void> updateProfile(String name, int age) async {
+  void updateProfile(String name, int age) {
     _userName = name;
     _userAge = age;
-    await storageHelper.setUserName(name);
-    await storageHelper.setUserAge(age);
+    _addLog('Updated profile info');
     notifyListeners();
   }
 
   Future<void> addItem(WatchItem item) async {
-    await storageHelper.addWatchItem(item);
-    _refresh();
+    _items.add(item);
+    _addLog('Added "${item.title}"');
+    await storageHelper.saveItems(_items);
+    notifyListeners();
   }
 
-  Future<void> updateItem(WatchItem item) async {
-    await storageHelper.updateWatchItem(item);
-    _refresh();
-  }
-
-  Future<void> deleteItem(String id) async {
-    await storageHelper.deleteWatchItem(id);
-    _refresh();
+  Future<void> updateItem(WatchItem updatedItem) async {
+    final index = _items.indexWhere((item) => item.id == updatedItem.id);
+    if (index != -1) {
+      _items[index] = updatedItem;
+      _addLog('Updated "${updatedItem.title}"');
+      await storageHelper.saveItems(_items);
+      notifyListeners();
+    }
   }
 
   Future<void> toggleFavorite(WatchItem item) async {
-    final updated = item.copyWith(isFavorite: !item.isFavorite);
-    await storageHelper.updateWatchItem(updated);
-    _refresh();
+    final index = _items.indexWhere((i) => i.id == item.id);
+    if (index != -1) {
+      _items[index].isFavorite = !_items[index].isFavorite;
+      _addLog(_items[index].isFavorite
+          ? 'Added "${item.title}" to favorites'
+          : 'Removed "${item.title}" from favorites');
+      await storageHelper.saveItems(_items);
+      notifyListeners();
+    }
   }
 
-  Future<void> clearLogs() async {
-    await storageHelper.clearLogs();
-    _refresh();
+  Future<void> updateStatus(String id, String newStatus) async {
+    final index = _items.indexWhere((item) => item.id == id);
+    if (index != -1) {
+      _items[index].status = newStatus;
+      _addLog('Changed status of "${_items[index].title}" to $newStatus');
+      await storageHelper.saveItems(_items);
+      notifyListeners();
+    }
   }
 
-  void _refresh() {
-    _watchItems = storageHelper.getWatchItems();
-    _logs = storageHelper.getLogs();
-    notifyListeners();
+  Future<void> deleteItem(String id) async {
+    final index = _items.indexWhere((item) => item.id == id);
+    if (index != -1) {
+      String title = _items[index].title;
+      _items.removeAt(index);
+      _addLog('Deleted "$title"');
+      await storageHelper.saveItems(_items);
+      notifyListeners();
+    }
+  }
+
+  void _addLog(String action) {
+    _logs.insert(0, '${DateTime.now().toString().substring(0, 16)} - $action');
   }
 }
