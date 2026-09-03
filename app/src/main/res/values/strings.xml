@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">TaraNood</string>
+    <string name="rewatch">Rewatch</string>
+    <string name="rewatch_confirmation">Are you sure you want to rewatch this item? Progress will be reset.</string>
+    <string name="delete_items">Delete Items</string>
+    <string name="delete_confirmation">Are you sure you want to delete %1$d item(s)? This action cannot be undone.</string>
+    <string name="delete_success">%1$d item(s) successfully deleted.</string>
+    <string name="favorite_delete_error">Favorited items cannot be deleted. Unfavorite them first.</string>
+    <string name="select_all">Select All</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="sort">Sort</string>
+    <string name="recently_added">Recently Added</string>
+    <string name="recently_watched">Recently Watched</string>
+    <string name="recently_updated">Recently Updated</string>
+    <string name="alphabetic">Alphabetic</string>
+    <string name="progress">Progress</string>
+    <string name="search_history">Search history&#8230;</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search your watch list&#8230;</string>
+    <string name="search_favorites_hint">Search your favorites&#8230;</string>
+    <string name="empty_watchlist_title">No Watchlist Yet</string>
+    <string name="empty_watchlist_msg">Start adding movies or series you want to watch.</string>
+    <string name="empty_watchlist_sub">Tap the + button to begin.</string>
+    <string name="empty_favorites_title">No Favorites Yet</string>
+    <string name="empty_favorites_msg">Add movies or series to your favorites for quick access.</string>
+    <string name="empty_history_title">No Watch History</string>
+    <string name="empty_history_msg">Completed movies and series will appear here.</string>
+
+    <!-- Settings and About -->
+    <string name="settings_title">Profile</string>
+    <string name="about_title">About</string>
+    <string name="app_settings_title">Settings</string>
+    <string name="appearance_header">Appearance</string>
+    <string name="data_management_header">Data Management</string>
+    <string name="export_data">Export Data (Backup)</string>
+    <string name="import_data">Import Data (Restore)</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="clear_all_data">Clear All Data</string>
+    <string name="about_app_name">TaraNood v1.0</string>
+    <string name="about_description">Your personal offline movie and series tracker.\n\nTaraNood helps users organize movies, anime, and TV series they want to watch — all in one simple and clean app.</string>
+
+    <string name="features_label">Key Features</string>
+    <string name="features_list">• Track Movies, Series, and Anime\n• Manage Favorites for Quick Access\n• Monitor Watch Progress\n• Detailed Watch Statistics\n• Data Backup and Restore\n• Adaptive Dark Mode Support</string>
+
+    <string name="developer_label">Developer</string>
+    <string name="developer_name">Rohn Justin Gamboa\nBSIT - SD</string>
+    <string name="copyright_text">TaraNood © 2026 Rohn Justin Gamboa\nAll Rights Reserved.</string>
+    <string name="activity_log_title">Activity Log</string>
+    <string name="selected_count">%1$d selected</string>
+    <string name="clear_logs">Clear Logs</string>
+    <string name="back">Back</string>
+    <string name="details">Details</string>
+    <string name="close">Close</string>
+    <string name="description_notes">Description / Notes</string>
+    <string name="no_notes">No description available.</string>
+    <string name="movie_progress">%1$d / %2$d minutes watched</string>
+    <string name="series_progress">%1$d / %2$d episodes watched</string>
+
+    <!-- Watch Preferences -->
+    <string name="watch_preferences_header">Watch Preferences</string>
+    <string name="default_add_type">Default Add Type</string>
+    <string name="default_add_type_desc">Automatically selected when adding</string>
+    <string name="log_preview_count">Activity Log preview count</string>
+    <string name="log_preview_count_desc">Number of logs shown in Profile</string>
+    <string name="type_movie">Movie</string>
+    <string name="type_series">Series</string>
+    <string name="type_anime">Anime</string>
+    <string name="type_other">Other</string>
+
+    <!-- Statistics -->
+    <string name="watch_statistics">Watch Statistics</string>
+    <string name="total_movies">Total Movies Saved</string>
+    <string name="total_series">Total Series Saved</string>
+    <string name="total_anime">Total Anime Saved</string>
+    <string name="total_other">Total Other Saved</string>
+    <string name="total_completed">Total Completed</string>
+    <string name="total_favorites">Total Favorites</string>
+    <string name="total_watch_time">Total Watch Time</string>
+    <string name="episodes_watched">Episodes Watched</string>
+    <string name="minutes_suffix">%1$d mins</string>
+    <string name="hours_minutes_suffix">%1$dh %2$dm</string>
+
+    <string name="quick_add">Quick Add</string>
+    <string name="manual_add">Manual Add</string>
+    <string name="search_placeholder">Search movie, series, or anime</string>
+    <string name="save_to_watchlist">Save to Watchlist</string>
+</resources>

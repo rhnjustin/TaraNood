@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tv_profile_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_title"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_about_top"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_dialog_info"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/about_title"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                app:tint="?android:attr/textColorPrimary"/>
+
+            <ImageButton
+                android:id="@+id/btn_settings_top"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_settings"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/settings_title"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:tint="?android:attr/textColorPrimary"/>
+        </LinearLayout>
+
+        <!-- Profile Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#1A000000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/profile_image_container"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:cardCornerRadius="50dp"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/sky_blue"
+                        android:layout_centerHorizontal="true">
+                        <ImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_person"
+                            android:background="#DCDCDC" />
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/profile_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Age: 0"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_marginBottom="24dp"/>
+
+                <Button
+                    android:id="@+id/btn_edit_profile"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_profile" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Watch Statistics Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/watch_statistics"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#1A000000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- Row 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Movies -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_total_movies"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_movies"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#1A000000"/>
+
+                    <!-- Series -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_total_series"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_series"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1A000000"/>
+
+                <!-- Row 2 (New: Anime and Other) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Anime -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_total_anime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_anime"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#1A000000"/>
+
+                    <!-- Other -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_total_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_other"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1A000000"/>
+
+                <!-- Row 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Completed -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_total_completed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_completed"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#1A000000"/>
+
+                    <!-- Favorites -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_total_favorites"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_favorites"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1A000000"/>
+
+                <!-- Row 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Watch Time -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_total_watch_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0h 0m"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_watch_time"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#1A000000"/>
+
+                    <!-- Episodes -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tv_stat_episodes_watched"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/sky_blue"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/episodes_watched"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Activity Log Section -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_log_title"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/btn_see_all_logs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See All"
+                android:textColor="@color/sky_blue"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:background="?attr/selectableItemBackground"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_logs_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Dynamic log entries will be added here -->
+            <TextView
+                android:id="@+id/tv_no_logs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No recent activity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorSecondary"
+                android:padding="16dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

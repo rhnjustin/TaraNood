@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Logo-matched palette -->
+    <color name="sky_blue">#1E8EE6</color>
+    <color name="sky_blue_dark">#1570B8</color>
+    <color name="sky_blue_alpha">#331E8EE6</color>
+    <color name="vivid_orange">#FF8C00</color>
+
+    <!-- App backgrounds -->
+    <color name="bg_light">#EAF4FF</color>
+    <color name="bg_dark">#0D1B2A</color>
+
+    <!-- Card surfaces — distinct from app background -->
+    <color name="card_surface_light">#FFFFFF</color>
+    <color name="card_surface_dark">#DE162840</color>
+
+    <!-- Bottom nav / surface -->
+    <color name="surface_light">#D0E8FF</color>
+    <color name="surface_dark">#0A1520</color>
+
+    <!-- Switch colors -->
+    <color name="switch_thumb_on">#1E8EE6</color>
+    <color name="switch_thumb_off">#AAAAAA</color>
+    <color name="switch_track_on">#661E8EE6</color>
+    <color name="switch_track_off">#44AAAAAA</color>
+
+    <!-- Danger -->
+    <color name="red">#FF4444</color>
+</resources>

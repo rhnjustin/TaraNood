@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/detail_poster"
+            android:layout_width="160dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:background="?attr/colorSurfaceContainer"
+            android:elevation="4dp"
+            android:contentDescription="@string/details"/>
+
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"/>
+
+        <TextView
+            android:id="@+id/detail_type_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorSecondary"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/listDivider"/>
+
+        <TextView
+            android:id="@+id/detail_progress_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/progress"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"/>
+
+        <TextView
+            android:id="@+id/detail_progress_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorSecondary"/>
+
+        <TextView
+            android:id="@+id/detail_notes_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description_notes"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"/>
+
+        <TextView
+            android:id="@+id/detail_notes_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorSecondary"/>
+
+    </LinearLayout>
+</ScrollView>

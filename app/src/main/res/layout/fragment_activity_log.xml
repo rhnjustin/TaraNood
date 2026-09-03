@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:attr/windowBackground">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp">
+
+        <ImageButton
+            android:id="@+id/btn_back_logs"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="?attr/homeAsUpIndicator"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:padding="12dp"
+            app:tint="?android:attr/textColorPrimary" />
+
+        <ImageButton
+            android:id="@+id/btn_cancel_selection"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cancel"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:tint="?android:attr/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_title_logs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/activity_log_title"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"/>
+
+        <ImageButton
+            android:id="@+id/btn_select_all"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_select_all"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/select_all"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:tint="?android:attr/textColorPrimary" />
+
+        <ImageButton
+            android:id="@+id/btn_clear_logs"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_menu_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="9dp"
+            android:scaleType="fitCenter"
+            app:tint="?android:attr/textColorPrimary"
+            android:contentDescription="@string/clear_logs"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_activity_log"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:clipToPadding="false"/>
+
+    <TextView
+        android:id="@+id/tv_empty_logs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="No activity logs yet"
+        android:gravity="center"
+        android:textColor="?android:attr/textColorSecondary"
+        android:visibility="gone"/>
+
+</LinearLayout>

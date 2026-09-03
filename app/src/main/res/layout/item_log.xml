@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="?attr/colorSurfaceContainer">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:baselineAligned="false">
+
+        <CheckBox
+            android:id="@+id/checkbox_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginEnd="8dp"
+            android:clickable="false"
+            android:focusable="false"/>
+
+        <FrameLayout
+            android:id="@+id/log_icon_container"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_bg"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/iv_log_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_menu_info_details"
+                app:tint="@android:color/white"
+                android:contentDescription="@null"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_log_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:text="2:15 PM" />
+
+            <TextView
+                android:id="@+id/tv_log_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="Added 'One Piece' to watchlist"
+                android:layout_marginTop="2dp"/>
+
+            <TextView
+                android:id="@+id/tv_log_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="13sp"
+                android:text="Type: Anime"
+                android:layout_marginTop="2dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

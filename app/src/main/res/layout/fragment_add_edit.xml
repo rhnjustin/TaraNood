@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Bottom sheet drag handle -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:background="#555555"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/text_title_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add New Item"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="22sp"
+            android:letterSpacing="0.02"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Poster + Image Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/edit_poster"
+                android:layout_width="90dp"
+                android:layout_height="130dp"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:background="#2A2A2A"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Poster Image"
+                    android:textColor="#BBBBBB"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp"/>
+
+                <Button
+                    android:id="@+id/btn_select_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Choose Image"
+                    android:textSize="13sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Title Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:textColorHint="#888888"
+            app:hintTextColor="?attr/colorPrimary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginBottom="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Type / Status Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TYPE"
+                    android:textColor="#888888"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner
+                    android:id="@+id/spinner_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STATUS"
+                    android:textColor="#888888"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner
+                    android:id="@+id/spinner_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!--            MOVIE PROGRESS SECTION           -->
+        <!-- ═══════════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/layout_progress_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <!-- Card: Total Runtime -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#1E1E1E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL RUNTIME"
+                        android:textColor="#888888"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="12dp"/>
+
+                    <!-- NumberPicker Row: Hours + Minutes -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <NumberPicker
+                                android:id="@+id/picker_hours"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?android:attr/textColorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="hr"
+                                android:textColor="#AAAAAA"
+                                android:textSize="13sp"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textColor="#555555"
+                            android:textSize="28sp"
+                            android:layout_marginHorizontal="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <NumberPicker
+                                android:id="@+id/picker_minutes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?android:attr/textColorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="min"
+                                android:textColor="#AAAAAA"
+                                android:textSize="13sp"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Runtime summary label -->
+                    <TextView
+                        android:id="@+id/text_runtime_display"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0 hr 0 min  (0 min total)"
+                        android:gravity="center"
+                        android:textColor="#1E8EE6"
+                        android:textSize="13sp"
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Watched Runtime -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#1E1E1E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                android:layout_marginBottom="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="WATCHED RUNTIME"
+                            android:textColor="#888888"
+                            android:textSize="11sp"
+                            android:letterSpacing="0.08"/>
+
+                        <TextView
+                            android:id="@+id/text_watched_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 hr 0 min"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <!-- NumberPicker for watched hours -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <NumberPicker
+                                android:id="@+id/picker_watched_hours"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="?android:attr/textColorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="hours"
+                                android:textColor="#AAAAAA"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textColor="#555555"
+                            android:textSize="28sp"
+                            android:layout_marginHorizontal="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <NumberPicker
+                                android:id="@+id/picker_watched_minutes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="?android:attr/textColorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="minutes"
+                                android:textColor="#AAAAAA"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Percentage and Progress Bar -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/text_movie_percent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="#1E8EE6"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:layout_marginBottom="8dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progress_bar_movie"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:progress="0"
+                            android:max="100"
+                            android:progressTint="@color/sky_blue"
+                            android:progressBackgroundTint="#333333"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!--          SERIES / ANIME SECTION             -->
+        <!-- ═══════════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/layout_progress_series"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp">
+
+            <!-- Card: Total Episodes (Editable) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#1E1E1E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL EPISODES"
+                        android:textColor="#888888"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="12dp"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:hint="Enter total episodes">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/input_total_episodes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="0"
+                            android:textColor="?android:attr/textColorPrimary"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Episodes Watched -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#1E1E1E"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="EPISODES WATCHED"
+                            android:textColor="#888888"
+                            android:textSize="11sp"
+                            android:letterSpacing="0.08"/>
+
+                        <TextView
+                            android:id="@+id/text_episodes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 / 0 Episodes"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <!-- Stepper buttons for episodes watched -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_ep_minus"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:text="−"
+                            android:textSize="24sp"
+                            android:padding="0dp"
+                            android:enabled="false"
+                            app:cornerRadius="28dp"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/text_ep_watched_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="32sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/text_ep_percent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0%"
+                                android:textColor="#1E8EE6"
+                                android:textSize="13sp"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_ep_plus"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:text="+"
+                            android:textSize="24sp"
+                            android:padding="0dp"
+                            android:enabled="false"
+                            app:cornerRadius="28dp"/>
+                    </LinearLayout>
+
+                    <!-- Episode Progress Bar -->
+                    <ProgressBar
+                        android:id="@+id/progress_bar_series"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:progress="0"
+                        android:max="100"
+                        android:layout_marginTop="12dp"
+                        android:progressTint="@color/sky_blue"
+                        android:progressBackgroundTint="#333333"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Notes -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notes"
+            android:textColorHint="#888888"
+            app:hintTextColor="?attr/colorPrimary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginBottom="24dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="3"
+                android:gravity="top"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Watch Link (Optional) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Watch Link (optional)"
+            android:textColorHint="#888888"
+            app:hintTextColor="?attr/colorPrimary"
+            app:startIconDrawable="@android:drawable/ic_menu_share"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginBottom="24dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_watch_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textUri"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Save Item"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
